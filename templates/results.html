@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id='favicon' rel="shortcut icon" href="logo.svg" type="image/x-png">
+    <title>CV Ranking Tool</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #e5ecfb, #ffffc5) no-repeat center center;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0; /* Ensure no margin around the body */
+            padding: 0; /* Ensure no padding around the body */
+            min-height: 100vh; /* Ensure the body covers the full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Reduced opacity for a lighter background */
+            border-radius: 20px; /* Rounded corners */
+            padding: 30px; /* Spacious padding */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+            width: 100%; /* Full width */
+            max-width: 600px; /* Limit to 600px for larger screens */
+            margin: 0 auto; /* Center the container horizontally */
+            transition: background-color 0.3s ease; /* Smooth background transition */
+        }
+    
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px; /* Margin for spacing */
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+    
+        th, td {
+            padding: 15px; /* Spacious padding */
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+    
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold; /* Make header text stand out */
+        }
+    
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px; /* Larger click area */
+            border: 2px solid transparent; /* For hover effect */
+            transition: border-color 0.3s ease; /* Smooth border transition */
+        }
+    
+        a:hover {
+            text-decoration: underline;
+            border-color: #3498db; /* Border on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CV Ranking Results</h1>
+        <table>
+            <tr>
+                <th>Resume/CV File Name</th>
+                <th>Job match score % for the submitted Resume/CV</th>
+            </tr>
+            {% for cv_id, score in rankings %}
+            <tr>
+                <td>{{ cv_id }}</td>
+                <td>{{ "%.2f"|format(score) }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>

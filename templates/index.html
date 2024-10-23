@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id='favicon' rel="shortcut icon" href="{{ url_for('static', filename='images/logo.svg') }}" type="image/x-png">
+    <title>CV Ranking Tool</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #e5ecfb, #ffffc5) no-repeat center center;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            transition: background-color 0.3s ease;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .input-box {
+            flex: 1;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            text-align: center;
+            background-image: url('{{ url_for("static", filename="images/background.png") }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        .input-box img {
+            width: 90px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        
+        .input-box label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            text-align: left; /* Align label text to the left */
+        }
+        
+        textarea {
+            width: calc(100% - 20px); /* Adjust for padding */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: left; /* Change text alignment */
+            resize: vertical; /* Allow vertical resizing */
+            box-sizing: border-box; /* Include padding in width */
+        }
+        
+        input[type="file"] {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: auto;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .error {
+            color: red;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CV Ranking Tool</h1>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <div class="input-group">
+                <div class="input-box">
+                    <h1>About Job</h1>
+                    <img src="{{ url_for('static', filename='images/job-description-icon.svg') }}" alt="Job Icon">
+                    <label for="job_description">Job Description:</label>
+                    <textarea id="job_description" name="job_description" rows="4" required></textarea>
+                </div>
+                <div class="input-box">
+                    <h1>Resume</h1>
+                    <img src="{{ url_for('static', filename='images/resume.png') }}" alt="Resume Icon">
+                    <label for="cvs">Upload CVs (PDF/DOCX):</label>
+                    <input type="file" name="cvs" multiple required>
+                </div>
+            </div>
+            <button type="submit">Rank CVs</button>
+        </form>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
